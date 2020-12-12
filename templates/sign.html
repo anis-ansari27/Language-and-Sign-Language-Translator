@@ -1,0 +1,84 @@
+{% extends 'home/layout.html' %}
+
+{% block style %}
+    <style>
+        #sign-swipe{
+            background-color: rgba(128, 128, 128,0.4);
+            color: indigo;
+            border-bottom: 2px solid indigo;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+{% endblock %}
+
+{% block main-container %}
+    <div class="translate-container" id="sign-container">
+        <form action="/sign" method="GET">
+            <div class="sign-textbox">
+                <textarea class="sign-source" id="src" name="sign-source" rows="7" cols="100" placeholder="Enter the text to translate in Indian Sign Language..." r>{{signtext}}</textarea>
+            </div>
+            <a class="microphone" id="still-mic" onclick="return runSpeechRecognition()">
+                <img src="/static/home/microphone.png">
+            </a>
+            <a class="microphone" id="recording" style="display: none;">
+                <img src="/static/home/listen2.gif">
+            </a>
+            
+            <input type="submit" value="Translate" name="sign-button">
+        </form>
+        <div class="collage-container">
+            {% for letter in collage %}
+                
+                <img class="letter" src={{letter}} alt="">
+            {% endfor %}
+        </div>
+        
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = "en-EN";
+    var listening = false;
+    recognition.onresult = function(event) {
+        var interim_transcript = '';
+        var final_transcript = '';
+
+
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+                document.getElementById('src').value = final_transcript;
+                runSpeechRecognition();
+            } 
+            else {
+                interim_transcript += event.results[i][0].transcript;
+                document.getElementById('src').value = interim_transcript;
+            }
+        }
+                    //console.log(interim_transcript, final_transcript);
+
+    };
+
+    function runSpeechRecognition() {        
+        if(listening) {
+            document.getElementById("still-mic").style.display = "inline-block";
+            document.getElementById("recording").style.display = "none";
+            recognition.stop();  
+            listening = false;
+        }
+        else {
+            document.getElementById("still-mic").style.display = "none";
+            document.getElementById("recording").style.display = "inline-block";
+            recognition.start();
+            listening = true;
+            document.getElementById('src').placeholder = "listening, please speak...";
+        }
+    }
+
+</script>
+
+{% endblock %}

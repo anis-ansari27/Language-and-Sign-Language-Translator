@@ -1,0 +1,110 @@
+{% extends 'home/layout.html' %}
+
+{% block style %}
+    <style>
+        #text-swipe{
+            background-color: rgba(128, 128, 128,0.4);
+            color: indigo;
+            border: none;
+            border-bottom: 2px solid indigo;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+{% endblock %}
+
+{% block main-container %}
+    <div class="translate-container" id="text-container">
+        <form action="." method="GET">
+            <div class="text-combo-box">
+                <select id="source-language" name="src-language">
+                    {% for lang in languages %}
+                        {% if lang is "{{src-combo}}" %}
+                            <option value={{lang}} selected>{{lang}}</option>
+                        {% else %}
+                            <option value={{lang}}>{{lang}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <select id="dest-language" name="dest-language">
+                    {% for lang in languages %}
+                        {% if lang is "{{dest-combo}}" %}
+                            <option value={{lang}} selected>{{lang}}</option>
+                        {% else %}
+                            <option value={{lang}}>{{lang}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="text-textbox">
+                <textarea class="text-box" id="src" name="src" placeholder="Enter the text to translate here..." rows="10" cols="50">{{source_text}}</textarea>
+                <textarea class="text-box" id="dest" name="dest" placeholder="Translated text will appear here..." rows="10" cols="50">{{result}}</textarea>
+            </div>
+            <a class="microphone" id="still-mic" onclick="return runSpeechRecognition()">
+                <img  src="/static/home/microphone.png">
+            </a>
+            <a class="microphone" id="recording" style="display: none;">
+                <img src="/static/home/listen2.gif">
+            </a>
+            
+            <input type="submit" value="Translate">
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    list= {'arabic':'ar', 'bengali': 'bn', 'chinese':'zh-tw','english':'en','french':'fr','german':'de','greek':'el' , 
+    'gujarati':'gu','hindi':'hi','italian':'it' ,'korean':'ko', 'malayalam':'ml' , 'marathi':'mr',
+    'punjabi':'pa','russian':'ru',  'spanish':'es', 'tamil':'ta', 'telugu':'te'}
+
+    list_record = {'ar':'ar-DZ', 'bn': 'bn-IN','zh-tw':'zh (cmn-Hans-CN)','en':'en-GB','fr':'fr-BE','ge':'de-DE','el':'el-GR' , 
+                    'gu':'gu-IN','hi':'hi-IN','italian':'it' ,'ko':'ko-KR', 'ml':'ml-IN' , 'mr':'mr-IN',
+                    'pa':'pa-Guru-IN','ru':'ru-RU',  'es':'es-MX', 'ta':'ta-IN', 'te':'te-IN'}
+    
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    var src_select = "English";
+
+    var listening = false;
+    recognition.onresult = function(event) {
+        var interim_transcript = '';
+        var final_transcript = '';
+
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                final_transcript += event.results[i][0].transcript;
+                document.getElementById('src').value = final_transcript;
+                runSpeechRecognition();
+            } 
+            else {
+                interim_transcript += event.results[i][0].transcript;
+                document.getElementById('src').value = interim_transcript;
+            }
+        }
+    };
+
+    function runSpeechRecognition() {
+        src_select = document.getElementById("source-language").value;
+        recognition.lang = list_record[list[src_select.toLowerCase()]];
+        console.log(document.getElementById("source-language").value)
+        console.log(src_select)
+                
+        if(listening) {
+            document.getElementById("still-mic").style.display = "inline-block";
+            document.getElementById("recording").style.display = "none";
+            recognition.stop();  
+            listening = false;
+        }
+        else {
+            recognition.start();
+            document.getElementById("still-mic").style.display = "none";
+            document.getElementById("recording").style.display = "inline-block";
+            listening = true;
+            document.getElementById('src').placeholder = "listening, please speak...";
+        }
+    }
+
+</script>
+{% endblock %}
