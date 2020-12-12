@@ -1,0 +1,238 @@
+body{
+    padding: 0px;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(226, 219, 219);
+    
+}
+header{
+    background-color: rgba(255, 255, 255,0.5);    
+    color:black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 5em;
+}
+.header-nav{
+    display: flex;
+}
+#header-logo>img{
+    width: 100px;
+    height: 100px;
+    margin-top: 9px;
+    margin-left: 120px;
+}
+#header-name{
+    padding: 10px;
+    font-weight: bolder;
+    margin-left: 0.3em;
+    color: indigo;
+    font-size: 3em;
+}
+#about{
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: 120px;
+    font-size: 2em;
+    color: indigo;  
+    transition: font-size 2s; 
+}
+#about:hover{
+    font-size: 2.2em;
+}
+.main-container{
+    transition: visibility 0s, opacity 0.5s linear;
+    padding: 10px;
+    margin-left: 130px;
+    margin-right: 120px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.buttons{
+    margin-left: 120px; 
+    margin-top: 20px;  
+    margin-bottom: 20px;
+}
+.swipe-buttons{
+    background-color: rgba(255, 255, 255,0.5);
+    width:230px;
+    font-size: 1em;
+    padding: 10px;
+    font-weight: bold;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: indigo;
+    transition-duration: 0.4s;
+}
+.buttons > a{
+    text-decoration: none;
+}
+.buttons a:hover{
+    background-color: rgba(128, 128, 128,0.4);
+}
+
+#text-container{
+    display: block;
+}
+#sign-container{
+    display: block;
+}
+.text-combo-box{
+    padding: 10px 5px 5px 10px;   
+}
+.text-combo-box > select{
+    background-color: rgba(255, 255, 255,0.5);
+    width:300px;
+    font-size: 1em;
+    font-weight: bold;
+    color: indigo;
+    padding: 7px;
+    transition-duration: 0.4s;
+}
+#source-language{
+    margin-right: 317px;
+}
+.text-combo-box > select:hover{
+    background-color: rgba(128, 128, 128,0.4);
+    cursor: pointer;
+}
+.text-textbox,.sign-textbox{
+    padding:10px;
+}
+.text-textbox textarea{
+    background-color: rgba(255, 255, 255,0.5);
+    padding: 10px;
+    font-size: 1.3em;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 607.3px;
+    resize: none;
+}
+#src{
+    margin-right: 10px;
+}
+.sign-textbox textarea{
+    background-color: rgba(255, 255, 255,0.5);
+    padding: 10px;
+    font-size: 1.3em;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 1241px;
+    resize: none;
+}
+#sign-container input{
+    transition-duration: 0.4s;
+    width:230px;
+    font-size: 1em;
+    padding: 10px;
+    font-weight: bold;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: indigo;
+    margin-left: 430px;
+}
+#sign-container input:hover{
+    background-color: rgba(75, 0, 130,0.9);
+    width: 240px;
+    
+}
+#text-container input{
+    width:230px;
+    font-size: 1em;
+    padding: 10px;
+    font-weight: bold;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgba(255, 255, 255);
+    background-color: indigo;
+    margin-left: 430px;
+    transition-duration: 0.4s;
+}
+#text-container input:hover{
+    background-color: rgba(75, 0, 130,0.9);
+    width: 240px;
+}
+.collage-container{
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.letter{
+    width: 250px;
+    height: 200px;
+}
+#still-mic{
+    margin: 20px;
+}
+#recording > img{
+    width: 50px;
+    height: 30px;
+    margin-left: 20px;
+}
+#still-mic > img{
+    width: 30px;
+    height: 30px;
+    transition: width 0.3s, height 0.3s;
+}
+#still-mic >img:hover{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+#about-content{
+    transition-duration: 1s;
+    margin-left: 130px;
+    margin-right: 120px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+#about-content > h1{
+    color: indigo;
+    padding-left: 0px;
+    width: 350px;
+    font-size: 2.5em;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-top: 10px;
+    text-align: right;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgba(128, 128, 128,0.4);
+    
+   
+}
+#about-content > img{
+    padding: 10px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    
+}
+#about-content > p{
+    
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    
+    float: right;
+    border-radius: 30px;
+    font-size: 1.5em;
+    width: 600px;
+    margin-top: 20px;
+    text-align: center;
+    margin-right: 100px;
+    background-color: rgba(128, 128, 128,0.4);
+    color: indigo;
+}
