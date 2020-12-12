@@ -1,5 +1,5 @@
-# Interpret-Language-Translator-
-Interpret is a language translator prepared using Python. It’s motto
-is to make communication easier and provide a better learning of
-different languages. It provides an easy to use interface and
-enables easier conversation through text and speech.
+# Interpret-Language(Sign+Text)-Translator-
+Interpret is a web app made using django . It enables users to 
+translate between different lnguages in text or audio form. It also 
+enables users to convert english language sentences or words to sign language 
+in the form of GIFs or images.
